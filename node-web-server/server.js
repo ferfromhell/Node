@@ -7,6 +7,7 @@ var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials')
 app.set('view engine', 'hbs');
+app.set('views',__dirname+'/views');
 
 app.use((req, res, next) => {
   var now = new Date().toString();
@@ -36,6 +37,7 @@ hbs.registerHelper('screamIt', (text) => {
 });
 
 app.get('/', (req, res) => {
+  console.log('dir get1: ' + __dirname);
   res.render('home.hbs', {
     pageTitle: 'Home Page',
     welcomeMessage: 'Welcome to my website'
@@ -43,12 +45,14 @@ app.get('/', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
+  console.log('dir get1: ' + __dirname+'/about');
   res.render('about.hbs',{
     pageTitle: 'About Page'
   });
 });
 
 app.get('/bad', (req, res) => {
+  console.log('dir get1: ' + __dirname+'/bad');
     res.send({
       errorMessage: 'Unable to handle request'
     });
